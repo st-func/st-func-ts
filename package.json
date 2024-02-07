@@ -1,0 +1,19 @@
+{
+  "name": "@st-func/st-func-ts",
+  "version": "0.1.0",
+  "description": "建築構造設計をするためのライブラリ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/st-func/st-func-ts.git"
+  },
+  "author": "st_func",
+  "license": "AGPL-3.0-or-later",
+  "bugs": {
+    "url": "https://github.com/st-func/st-func-ts/issues"
+  },
+  "homepage": "https://github.com/st-func/st-func-ts#readme"
+}
