@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/st-func/st-func-ts/issues"
   },
-  "homepage": "https://github.com/st-func/st-func-ts#readme"
+  "homepage": "https://github.com/st-func/st-func-ts#readme",
+  "dependencies": {
+    "typescript": "^5.3.3"
+  }
 }
