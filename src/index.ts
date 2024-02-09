@@ -1,1 +1,2 @@
-export * from "./sec/build-h-function"
+export * from "./constant";
+export * from "./sec/build-h-function";
