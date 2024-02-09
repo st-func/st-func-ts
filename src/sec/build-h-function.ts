@@ -27,7 +27,7 @@ export class SecBuildHFunction {
     t1: number,
     t2: number
   ): number {
-    return (b * a ** 3 - (b - t1) * (1 - 2 * t2) ** 3) / 12.0;
+    return (b * a ** 3 - (b - t1) * (a - 2 * t2) ** 3) / 12.0;
   }
   /**
    * 組立H形鋼の断面二次モーメント（弱軸）
