@@ -2,38 +2,55 @@ import { SecBuildHFunction } from "./build-h-function";
 import { SectionPropertyType } from "../constant";
 
 test("ビルドHのA", () => {
-  expect(SecBuildHFunction.build_h_area(1200, 400, 19, 25)).toBe(41850.0);
+  const H = 1.2;
+  const B = 0.4;
+  const T1 = 0.019;
+  const T2 = 0.025;
+  const A = 4.185e-2;
+  expect(SecBuildHFunction.build_h_area(H, B, T1, T2)).toBe(A);
   expect(
-    SecBuildHFunction.build_h(SectionPropertyType.Area, 1200, 400, 19, 25)
-  ).toBe(41850.0);
+    SecBuildHFunction.build_h(SectionPropertyType.Area, H, B, T1, T2)
+  ).toBe(A);
 });
 
 test("ビルドHのIy", () => {
+  const H = 1.2;
+  const B = 0.4;
+  const T1 = 0.019;
+  const T2 = 0.025;
+  const IY = 9.31221875e-3;
+  const NUM_DIGITS = 17;
   expect(
-    SecBuildHFunction.build_h_second_moment_of_area_y(1200, 400, 19, 25)
-  ).toBe(9312218750.0);
+    SecBuildHFunction.build_h_second_moment_of_area_y(H, B, T1, T2)
+  ).toBeCloseTo(IY, NUM_DIGITS);
   expect(
     SecBuildHFunction.build_h(
       SectionPropertyType.SecondMomentOfAreaY,
-      1200,
-      400,
-      19,
-      25
+      H,
+      B,
+      T1,
+      T2
     )
-  ).toBe(9312218750.0);
+  ).toBeCloseTo(IY, NUM_DIGITS);
 });
 
 test("ビルドHのIz", () => {
+  const H = 1.2;
+  const B = 0.4;
+  const T1 = 0.019;
+  const T2 = 0.025;
+  const IZ = 2.673239875e-4;
+  const NUM_DIGITS = 18;
   expect(
-    SecBuildHFunction.build_h_second_moment_of_area_z(1200, 400, 19, 25)
-  ).toBe(267323987.5);
+    SecBuildHFunction.build_h_second_moment_of_area_z(H, B, T1, T2)
+  ).toBeCloseTo(IZ, NUM_DIGITS);
   expect(
     SecBuildHFunction.build_h(
       SectionPropertyType.SecondMomentOfAreaZ,
-      1200,
-      400,
-      19,
-      25
+      H,
+      B,
+      T1,
+      T2
     )
-  ).toBe(267323987.5);
+  ).toBeCloseTo(IZ, NUM_DIGITS);
 });
