@@ -11,7 +11,7 @@ export class SecBuildHFunction {
    * @param t2 フランジ厚 t2
    * @returns 断面積 A
    */
-  static build_h_area(a: number, b: number, t1: number, t2: number): number {
+  static buildHArea(a: number, b: number, t1: number, t2: number): number {
     return a * b - (a - 2 * t2) * (b - t1);
   }
   /**
@@ -22,7 +22,7 @@ export class SecBuildHFunction {
    * @param t2 フランジ厚 t2
    * @returns 断面二次モーメント（強軸）Iy
    */
-  static build_h_second_moment_of_area_y(
+  static buildHSecondMomentOfAreaY(
     a: number,
     b: number,
     t1: number,
@@ -38,7 +38,7 @@ export class SecBuildHFunction {
    * @param t2 フランジ厚 t2
    * @returns 断面二次モーメント（弱軸） Iz
    */
-  static build_h_second_moment_of_area_z(
+  static buildHSecondMomentOfAreaZ(
     a: number,
     b: number,
     t1: number,
@@ -55,7 +55,7 @@ export class SecBuildHFunction {
    * @param t2 フランジ厚 t2
    * @returns 断面性能
    */
-  static build_h(
+  static buildH(
     propertyType: SectionPropertyType,
     a: number,
     b: number,
@@ -64,11 +64,11 @@ export class SecBuildHFunction {
   ): number {
     switch (propertyType) {
       case SectionPropertyType.Area:
-        return SecBuildHFunction.build_h_area(a, b, t1, t2);
+        return SecBuildHFunction.buildHArea(a, b, t1, t2);
       case SectionPropertyType.SecondMomentOfAreaY:
-        return SecBuildHFunction.build_h_second_moment_of_area_y(a, b, t1, t2);
+        return SecBuildHFunction.buildHSecondMomentOfAreaY(a, b, t1, t2);
       case SectionPropertyType.SecondMomentOfAreaZ:
-        return SecBuildHFunction.build_h_second_moment_of_area_z(a, b, t1, t2);
+        return SecBuildHFunction.buildHSecondMomentOfAreaZ(a, b, t1, t2);
       default:
         throw new Error("実装していない断面性能です。");
     }

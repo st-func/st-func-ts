@@ -28,19 +28,19 @@ test("単位の係数取得", () => {
 
 test("単位の変換", () => {
   //入力
-  expect(Unit.in(5.0, "m")).toBe(5.0);
-  expect(Unit.in(5.0, "mm")).toBe(0.005);
-  expect(Unit.in(5.0, "kg")).toBe(5.0);
-  expect(Unit.in(5.0, "kN")).toBe(5000.0);
-  expect(Unit.in(5.0, "kN/m")).toBe(5000.0);
-  expect(Unit.in(5.0, "mm^2")).toBeCloseTo(5e-6, 20);
-  expect(Unit.in(5.0, "N/mm^2")).toBe(5e6);
+  expect(Unit.input(5.0, "m")).toBe(5.0);
+  expect(Unit.input(5.0, "mm")).toBe(0.005);
+  expect(Unit.input(5.0, "kg")).toBe(5.0);
+  expect(Unit.input(5.0, "kN")).toBe(5000.0);
+  expect(Unit.input(5.0, "kN/m")).toBe(5000.0);
+  expect(Unit.input(5.0, "mm^2")).toBeCloseTo(5e-6, 20);
+  expect(Unit.input(5.0, "N/mm^2")).toBe(5e6);
   //出力
-  expect(Unit.out(5.0, "m")).toBe(5.0);
-  expect(Unit.out(5.0, "mm")).toBe(5000.0);
-  expect(Unit.out(5.0, "kg")).toBe(5.0);
-  expect(Unit.out(5.0, "kN")).toBe(0.005);
-  expect(Unit.out(5.0, "kN/m")).toBe(0.005);
-  expect(Unit.out(5.0, "mm^2")).toBe(5e6);
-  expect(Unit.out(5.0, "N/mm^2")).toBe(5e-6);
+  expect(Unit.output(5.0, "m")).toBe(5.0);
+  expect(Unit.output(5.0, "mm")).toBe(5000.0);
+  expect(Unit.output(5.0, "kg")).toBe(5.0);
+  expect(Unit.output(5.0, "kN")).toBe(0.005);
+  expect(Unit.output(5.0, "kN/m")).toBe(0.005);
+  expect(Unit.output(5.0, "mm^2")).toBe(5e6);
+  expect(Unit.output(5.0, "N/mm^2")).toBe(5e-6);
 });

@@ -82,7 +82,7 @@ export class Unit {
    * @param unit_from 単位
    * @returns 計算用数値
    */
-  static in(value: number, unit_from: string): number {
+  static input(value: number, unit_from: string): number {
     return value * this.factor(unit_from);
   }
 
@@ -92,7 +92,7 @@ export class Unit {
    * @param unit_to 単位
    * @returns 単位付き数値
    */
-  static out(value: number, unit_to: string): number {
+  static output(value: number, unit_to: string): number {
     return value / this.factor(unit_to);
   }
 }
