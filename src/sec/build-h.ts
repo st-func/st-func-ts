@@ -1,9 +1,9 @@
-import { SectionPropertyType } from "../constant";
-import { SecSteelFunction } from "./steel-function";
+import { SecPropertyType } from "../constant";
+import { SecSteel } from "./steel";
 /**
- * 組立H形鋼の断面性能を計算する関数集
+ * 組立H形鋼
  */
-export class SecBuildHFunction {
+export class SecBuildH {
   /**
    * 組立H形鋼の断面積
    * @param a 成 A
@@ -12,7 +12,7 @@ export class SecBuildHFunction {
    * @param t2 フランジ厚 t2
    * @returns 断面積 A
    */
-  static buildHArea(a: number, b: number, t1: number, t2: number): number {
+  static area(a: number, b: number, t1: number, t2: number): number {
     return a * b - (a - 2 * t2) * (b - t1);
   }
   /**
@@ -23,7 +23,7 @@ export class SecBuildHFunction {
    * @param t2 フランジ厚 t2
    * @returns 断面二次モーメント（強軸）Iy
    */
-  static buildHSecondMomentOfAreaY(
+  static secondMomentOfAreaY(
     a: number,
     b: number,
     t1: number,
@@ -39,7 +39,7 @@ export class SecBuildHFunction {
    * @param t2 フランジ厚 t2
    * @returns 断面二次モーメント（弱軸） Iz
    */
-  static buildHSecondMomentOfAreaZ(
+  static secondMomentOfAreaZ(
     a: number,
     b: number,
     t1: number,
@@ -56,24 +56,22 @@ export class SecBuildHFunction {
    * @param t2 フランジ厚 t2
    * @returns 断面性能
    */
-  static buildH(
-    propertyType: SectionPropertyType,
+  static property(
+    propertyType: SecPropertyType,
     a: number,
     b: number,
     t1: number,
     t2: number
   ): number {
     switch (propertyType) {
-      case SectionPropertyType.Area:
-        return SecBuildHFunction.buildHArea(a, b, t1, t2);
-      case SectionPropertyType.MassPerMetre:
-        return SecSteelFunction.massPerMetre(
-          SecBuildHFunction.buildHArea(a, b, t1, t2)
-        );
-      case SectionPropertyType.SecondMomentOfAreaY:
-        return SecBuildHFunction.buildHSecondMomentOfAreaY(a, b, t1, t2);
-      case SectionPropertyType.SecondMomentOfAreaZ:
-        return SecBuildHFunction.buildHSecondMomentOfAreaZ(a, b, t1, t2);
+      case SecPropertyType.Area:
+        return SecBuildH.area(a, b, t1, t2);
+      case SecPropertyType.MassPerMetre:
+        return SecSteel.massPerMetre(SecBuildH.area(a, b, t1, t2));
+      case SecPropertyType.SecondMomentOfAreaY:
+        return SecBuildH.secondMomentOfAreaY(a, b, t1, t2);
+      case SecPropertyType.SecondMomentOfAreaZ:
+        return SecBuildH.secondMomentOfAreaZ(a, b, t1, t2);
       default:
         throw new Error("実装していない断面性能です。");
     }

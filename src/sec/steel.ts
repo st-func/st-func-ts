@@ -2,7 +2,7 @@ import { STEEL_DENSITY } from "../constant";
 /**
  * 鉄骨断面に関する関数
  */
-export class SecSteelFunction {
+export class SecSteel {
   /**
    * 単位質量
    * @param area 断面積
