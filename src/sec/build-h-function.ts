@@ -1,4 +1,5 @@
 import { SectionPropertyType } from "../constant";
+import { SecSteelFunction } from "./steel-function";
 /**
  * 組立H形鋼の断面性能を計算する関数集
  */
@@ -65,6 +66,10 @@ export class SecBuildHFunction {
     switch (propertyType) {
       case SectionPropertyType.Area:
         return SecBuildHFunction.buildHArea(a, b, t1, t2);
+      case SectionPropertyType.MassPerMetre:
+        return SecSteelFunction.massPerMetre(
+          SecBuildHFunction.buildHArea(a, b, t1, t2)
+        );
       case SectionPropertyType.SecondMomentOfAreaY:
         return SecBuildHFunction.buildHSecondMomentOfAreaY(a, b, t1, t2);
       case SectionPropertyType.SecondMomentOfAreaZ:

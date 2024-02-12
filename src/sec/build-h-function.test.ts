@@ -13,6 +13,17 @@ test("ビルドHのA", () => {
   );
 });
 
+test("ビルドHの単位質量", () => {
+  const H = 1.2;
+  const B = 0.4;
+  const T1 = 0.019;
+  const T2 = 0.025;
+  const M = 328.5225;
+  expect(
+    SecBuildHFunction.buildH(SectionPropertyType.MassPerMetre, H, B, T1, T2)
+  ).toBe(M);
+});
+
 test("ビルドHのIy", () => {
   const H = 1.2;
   const B = 0.4;
