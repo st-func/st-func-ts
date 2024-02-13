@@ -1,9 +1,41 @@
 import { SecPropertyType } from "../constant";
 import { SecSteel } from "./steel";
+import { Unit } from "../unit";
 /**
  * 組立H形鋼
  */
 export class SecBuildH {
+  /** 形状名 */
+  name: string = "";
+  /** 成 A */
+  a: number = 0.0;
+  /** フランジ幅 B */
+  b: number = 0.0;
+  /** ウェブ厚 t1 */
+  t1: number = 0.0;
+  /** フランジ厚 t2 */
+  t2: number = 0.0;
+
+  /**
+   * 寸法により初期化し、nameも設定する
+   * @param a 成A
+   * @param b フランジ幅 B
+   * @param t1 ウェブ厚 t1
+   * @param t2 フランジ厚 t2
+   */
+  setDimensions(a: number, b: number, t1: number, t2: number) {
+    this.a = a;
+    this.b = b;
+    this.t1 = t1;
+    this.t2 = t2;
+    const scale: number = Unit.output(1.0, "mm");
+    a *= scale;
+    b *= scale;
+    t1 *= scale;
+    t2 *= scale;
+    this.name = `BH-${a}x${b}x${t1}x${t2}`;
+  }
+
   /**
    * 組立H形鋼の断面積
    * @param a 成 A
