@@ -38,6 +38,7 @@ export class SecBuildH {
 
   /**
    * 組立H形鋼の断面積
+   * 根拠:建築構造ポケットブック第6版 p.34
    * @param a 成 A
    * @param b フランジ幅 B
    * @param t1 ウェブ厚 t1
@@ -47,13 +48,41 @@ export class SecBuildH {
   static area(a: number, b: number, t1: number, t2: number): number {
     return a * b - (a - 2 * t2) * (b - t1);
   }
+
   /**
-   * 組立H形鋼の断面二次モーメント（強軸）
+   * 組立H形鋼の断面係数（Y軸まわり）
+   * （根拠:建築構造ポケットブック第6版 p.34）
    * @param a 成 A
    * @param b フランジ幅 B
    * @param t1 ウェブ厚 t1
    * @param t2 フランジ厚 t2
-   * @returns 断面二次モーメント（強軸）Iy
+   * @returns 断面係数（Y軸まわり） ZY
+   */
+  static elasticModulusY(a: number, b: number, t1: number, t2: number): number {
+    return (1.0 / (6.0 * a)) * (b * a ** 3 - (b - t1) * (a - 2 * t2) ** 3);
+  }
+
+  /**
+   * 組立H形鋼の断面係数（Z軸まわり）
+   * （根拠:建築構造ポケットブック第6版 p.34）
+   * @param a 成 A
+   * @param b フランジ幅 B
+   * @param t1 ウェブ厚 t1
+   * @param t2 フランジ厚 t2
+   * @returns 断面係数（Z軸まわり） ZZ
+   */
+  static elasticModulusZ(a: number, b: number, t1: number, t2: number): number {
+    return (1.0 / (6.0 * b)) * (2 * t2 * b ** 3 + (a - 2 * t2) * t1 ** 3);
+  }
+
+  /**
+   * 組立H形鋼の断面二次モーメント（Y軸まわり）
+   * （根拠:建築構造ポケットブック第6版 p.34）
+   * @param a 成 A
+   * @param b フランジ幅 B
+   * @param t1 ウェブ厚 t1
+   * @param t2 フランジ厚 t2
+   * @returns 断面二次モーメント（Y軸まわり）IY
    */
   static secondMomentOfAreaY(
     a: number,
@@ -61,15 +90,16 @@ export class SecBuildH {
     t1: number,
     t2: number
   ): number {
-    return (b * a ** 3 - (b - t1) * (a - 2 * t2) ** 3) / 12.0;
+    return (1.0 / 12.0) * (b * a ** 3 - (b - t1) * (a - 2 * t2) ** 3);
   }
   /**
-   * 組立H形鋼の断面二次モーメント（弱軸）
+   * 組立H形鋼の断面二次モーメント（Z軸まわり）
+   * （根拠:建築構造ポケットブック第6版 p.34）
    * @param a 成 A
    * @param b フランジ幅 B
    * @param t1 ウェブ厚 t1
    * @param t2 フランジ厚 t2
-   * @returns 断面二次モーメント（弱軸） Iz
+   * @returns 断面二次モーメント（Z軸まわり） IZ
    */
   static secondMomentOfAreaZ(
     a: number,
@@ -77,7 +107,7 @@ export class SecBuildH {
     t1: number,
     t2: number
   ): number {
-    return (t2 * 2 * b ** 3 + (a - 2 * t2) * t1 ** 3) / 12.0;
+    return (1.0 / 12.0) * (2 * t2 * b ** 3 + (a - 2 * t2) * t1 ** 3);
   }
   /**
    * 組立H形鋼の断面性能
@@ -98,8 +128,22 @@ export class SecBuildH {
     switch (propertyType) {
       case SecPropertyType.Area:
         return SecBuildH.area(a, b, t1, t2);
+      case SecPropertyType.ElasticModulusY:
+        return SecBuildH.elasticModulusY(a, b, t1, t2);
+      case SecPropertyType.ElasticModulusZ:
+        return SecBuildH.elasticModulusZ(a, b, t1, t2);
       case SecPropertyType.MassPerMetre:
         return SecSteel.massPerMetre(SecBuildH.area(a, b, t1, t2));
+      case SecPropertyType.RadiusOfGyrationY:
+        return SecSteel.radiusOfGyration(
+          SecBuildH.area(a, b, t1, t2),
+          SecBuildH.secondMomentOfAreaY(a, b, t1, t2)
+        );
+      case SecPropertyType.RadiusOfGyrationZ:
+        return SecSteel.radiusOfGyration(
+          SecBuildH.area(a, b, t1, t2),
+          SecBuildH.secondMomentOfAreaZ(a, b, t1, t2)
+        );
       case SecPropertyType.SecondMomentOfAreaY:
         return SecBuildH.secondMomentOfAreaY(a, b, t1, t2);
       case SecPropertyType.SecondMomentOfAreaZ:

@@ -25,6 +25,30 @@ test("ビルドHのA", () => {
   );
 });
 
+test("ビルドHのZY", () => {
+  const ZY = 1.55203645833333e-2;
+  const NUM_DIGITS = 16;
+  expect(SecBuildH.elasticModulusY(H.a, H.b, H.t1, H.t2)).toBeCloseTo(
+    ZY,
+    NUM_DIGITS
+  );
+  expect(
+    SecBuildH.property(SecPropertyType.ElasticModulusY, H.a, H.b, H.t1, H.t2)
+  ).toBeCloseTo(ZY, NUM_DIGITS);
+});
+
+test("ビルドHのZZ", () => {
+  const ZZ = 1.3366199375e-3;
+  const NUM_DIGITS = 17;
+  expect(SecBuildH.elasticModulusZ(H.a, H.b, H.t1, H.t2)).toBeCloseTo(
+    ZZ,
+    NUM_DIGITS
+  );
+  expect(
+    SecBuildH.property(SecPropertyType.ElasticModulusZ, H.a, H.b, H.t1, H.t2)
+  ).toBeCloseTo(ZZ, NUM_DIGITS);
+});
+
 test("ビルドHの単位質量", () => {
   const M = 328.5225;
   expect(
@@ -32,7 +56,23 @@ test("ビルドHの単位質量", () => {
   ).toBe(M);
 });
 
-test("ビルドHのIy", () => {
+test("ビルドHのiY", () => {
+  const IY = 4.71714095162177e-1;
+  const NUM_DIGITS = 15;
+  expect(
+    SecBuildH.property(SecPropertyType.RadiusOfGyrationY, H.a, H.b, H.t1, H.t2)
+  ).toBeCloseTo(IY, NUM_DIGITS);
+});
+
+test("ビルドHのiZ", () => {
+  const IZ = 7.99229000487988e-2;
+  const NUM_DIGITS = 16;
+  expect(
+    SecBuildH.property(SecPropertyType.RadiusOfGyrationZ, H.a, H.b, H.t1, H.t2)
+  ).toBeCloseTo(IZ, NUM_DIGITS);
+});
+
+test("ビルドHのIY", () => {
   const IY = 9.31221875e-3;
   const NUM_DIGITS = 17;
   expect(SecBuildH.secondMomentOfAreaY(H.a, H.b, H.t1, H.t2)).toBeCloseTo(
@@ -50,7 +90,7 @@ test("ビルドHのIy", () => {
   ).toBeCloseTo(IY, NUM_DIGITS);
 });
 
-test("ビルドHのIz", () => {
+test("ビルドHのIZ", () => {
   const IZ = 2.673239875e-4;
   const NUM_DIGITS = 18;
   expect(SecBuildH.secondMomentOfAreaZ(H.a, H.b, H.t1, H.t2)).toBeCloseTo(
