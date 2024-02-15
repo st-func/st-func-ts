@@ -7,7 +7,7 @@ B.b = 0.8;
 B.t1 = 0.019;
 B.t2 = 0.025;
 
-test("SecBuildH.setDimensions", () => {
+test("SecBuildBox.setDimensions", () => {
   const secBuildBox = new SecBuildBox();
   secBuildBox.setDimensions(B.a, B.b, B.t1, B.t2);
   expect(secBuildBox.a).toBe(B.a);
