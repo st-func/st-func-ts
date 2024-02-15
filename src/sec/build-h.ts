@@ -1,10 +1,9 @@
-import { SecPropertyType } from "../constant";
 import { SecSteel } from "./steel";
 import { Unit } from "../unit";
 /**
  * 組立H形鋼
  */
-export class SecBuildH {
+export class SecBuildH extends SecSteel {
   /** 形状名 */
   name: string = "";
   /** 成 A */
@@ -34,6 +33,45 @@ export class SecBuildH {
     t1 *= scale;
     t2 *= scale;
     this.name = `BH-${a}x${b}x${t1}x${t2}`;
+  }
+
+  /**
+   * 断面積
+   * @returns 断面積
+   */
+  area() {
+    return SecBuildH.area(this.a, this.b, this.t1, this.t2);
+  }
+  /**
+   * Y軸まわりの断面係数
+   * @returns Y軸まわりの断面係数
+   */
+  elasticModulusY(): number {
+    return SecBuildH.elasticModulusY(this.a, this.b, this.t1, this.t2);
+  }
+
+  /**
+   * Z軸まわりの断面係数
+   * @returns Z軸まわりの断面係数
+   */
+  elasticModulusZ(): number {
+    return SecBuildH.elasticModulusZ(this.a, this.b, this.t1, this.t2);
+  }
+
+  /**
+   * Y軸まわりの断面二次モーメント
+   * @returns Y軸まわりの断面二次モーメント
+   */
+  secondMomentOfAreaY(): number {
+    return SecBuildH.secondMomentOfAreaY(this.a, this.b, this.t1, this.t2);
+  }
+
+  /**
+   * Z軸まわりの断面二次モーメント
+   * @returns Z軸まわりの断面二次モーメント
+   */
+  secondMomentOfAreaZ(): number {
+    return SecBuildH.secondMomentOfAreaZ(this.a, this.b, this.t1, this.t2);
   }
 
   /**
@@ -108,48 +146,5 @@ export class SecBuildH {
     t2: number
   ): number {
     return (1.0 / 12.0) * (2 * t2 * b ** 3 + (a - 2 * t2) * t1 ** 3);
-  }
-  /**
-   * 組立H形鋼の断面性能
-   * @param propertyType 出力する断面性能のタイプ
-   * @param a 成 A
-   * @param b フランジ幅 B
-   * @param t1 ウェブ厚 t1
-   * @param t2 フランジ厚 t2
-   * @returns 断面性能
-   */
-  static property(
-    propertyType: SecPropertyType,
-    a: number,
-    b: number,
-    t1: number,
-    t2: number
-  ): number {
-    switch (propertyType) {
-      case SecPropertyType.Area:
-        return SecBuildH.area(a, b, t1, t2);
-      case SecPropertyType.ElasticModulusY:
-        return SecBuildH.elasticModulusY(a, b, t1, t2);
-      case SecPropertyType.ElasticModulusZ:
-        return SecBuildH.elasticModulusZ(a, b, t1, t2);
-      case SecPropertyType.MassPerMetre:
-        return SecSteel.massPerMetre(SecBuildH.area(a, b, t1, t2));
-      case SecPropertyType.RadiusOfGyrationY:
-        return SecSteel.radiusOfGyration(
-          SecBuildH.area(a, b, t1, t2),
-          SecBuildH.secondMomentOfAreaY(a, b, t1, t2)
-        );
-      case SecPropertyType.RadiusOfGyrationZ:
-        return SecSteel.radiusOfGyration(
-          SecBuildH.area(a, b, t1, t2),
-          SecBuildH.secondMomentOfAreaZ(a, b, t1, t2)
-        );
-      case SecPropertyType.SecondMomentOfAreaY:
-        return SecBuildH.secondMomentOfAreaY(a, b, t1, t2);
-      case SecPropertyType.SecondMomentOfAreaZ:
-        return SecBuildH.secondMomentOfAreaZ(a, b, t1, t2);
-      default:
-        throw new Error("実装していない断面性能です。");
-    }
   }
 }

@@ -20,9 +20,7 @@ test("Build-BOXのA", () => {
   const A = 7.61e-2;
   const NUM_DIGITS = 15;
   expect(SecBuildBox.area(B.a, B.b, B.t1, B.t2)).toBeCloseTo(A, NUM_DIGITS);
-  expect(
-    SecBuildBox.property(SecPropertyType.Area, B.a, B.b, B.t1, B.t2)
-  ).toBeCloseTo(A, NUM_DIGITS);
+  expect(B.property(SecPropertyType.Area)).toBeCloseTo(A, NUM_DIGITS);
 });
 
 test("Build-BOXのZY", () => {
@@ -32,53 +30,43 @@ test("Build-BOXのZY", () => {
     ZY,
     NUM_DIGITS
   );
-  expect(
-    SecBuildBox.property(SecPropertyType.ElasticModulusY, B.a, B.b, B.t1, B.t2)
-  ).toBeCloseTo(ZY, NUM_DIGITS);
+  expect(B.property(SecPropertyType.ElasticModulusY)).toBeCloseTo(
+    ZY,
+    NUM_DIGITS
+  );
 });
 
 test("Build-BOXのZZ", () => {
   const ZZ = 1.90982934166667e-2;
   const NUM_DIGITS = 16;
-  expect(
-    SecBuildBox.property(SecPropertyType.ElasticModulusZ, B.a, B.b, B.t1, B.t2)
-  ).toBeCloseTo(ZZ, NUM_DIGITS);
+  expect(B.property(SecPropertyType.ElasticModulusZ)).toBeCloseTo(
+    ZZ,
+    NUM_DIGITS
+  );
 });
 
 test("Build-BOXの単位質量", () => {
   const M = 597.385;
   const NUM_DIGITS = 12;
-  expect(
-    SecBuildBox.property(SecPropertyType.MassPerMetre, B.a, B.b, B.t1, B.t2)
-  ).toBeCloseTo(M, NUM_DIGITS);
+  expect(B.property(SecPropertyType.MassPerMetre)).toBeCloseTo(M, NUM_DIGITS);
 });
 
 test("Build-BOXのiY", () => {
   const IY = 4.007770731642e-1;
   const NUM_DIGITS = 13;
-  expect(
-    SecBuildBox.property(
-      SecPropertyType.RadiusOfGyrationY,
-      B.a,
-      B.b,
-      B.t1,
-      B.t2
-    )
-  ).toBeCloseTo(IY, NUM_DIGITS);
+  expect(B.property(SecPropertyType.RadiusOfGyrationY)).toBeCloseTo(
+    IY,
+    NUM_DIGITS
+  );
 });
 
 test("Build-BOXのiZ", () => {
   const IZ = 3.16836310923171e-1;
   const NUM_DIGITS = 15;
-  expect(
-    SecBuildBox.property(
-      SecPropertyType.RadiusOfGyrationZ,
-      B.a,
-      B.b,
-      B.t1,
-      B.t2
-    )
-  ).toBeCloseTo(IZ, NUM_DIGITS);
+  expect(B.property(SecPropertyType.RadiusOfGyrationZ)).toBeCloseTo(
+    IZ,
+    NUM_DIGITS
+  );
 });
 
 test("Build-BOXのIY", () => {
@@ -88,27 +76,17 @@ test("Build-BOXのIY", () => {
     IY,
     NUM_DIGITS
   );
-  expect(
-    SecBuildBox.property(
-      SecPropertyType.SecondMomentOfAreaY,
-      B.a,
-      B.b,
-      B.t1,
-      B.t2
-    )
-  ).toBeCloseTo(IY, NUM_DIGITS);
+  expect(B.property(SecPropertyType.SecondMomentOfAreaY)).toBeCloseTo(
+    IY,
+    NUM_DIGITS
+  );
 });
 
 test("Build-BOXのIZ", () => {
   const IZ = 7.63931736666666e-3;
   const NUM_DIGITS = 15;
-  expect(
-    SecBuildBox.property(
-      SecPropertyType.SecondMomentOfAreaZ,
-      B.a,
-      B.b,
-      B.t1,
-      B.t2
-    )
-  ).toBeCloseTo(IZ, NUM_DIGITS);
+  expect(B.property(SecPropertyType.SecondMomentOfAreaZ)).toBeCloseTo(
+    IZ,
+    NUM_DIGITS
+  );
 });

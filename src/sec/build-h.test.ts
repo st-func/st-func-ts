@@ -20,9 +20,7 @@ test("SecBuildH.setDimensions", () => {
 test("ビルドHのA", () => {
   const A = 4.185e-2;
   expect(SecBuildH.area(H.a, H.b, H.t1, H.t2)).toBe(A);
-  expect(SecBuildH.property(SecPropertyType.Area, H.a, H.b, H.t1, H.t2)).toBe(
-    A
-  );
+  expect(H.property(SecPropertyType.Area)).toBe(A);
 });
 
 test("ビルドHのZY", () => {
@@ -32,9 +30,10 @@ test("ビルドHのZY", () => {
     ZY,
     NUM_DIGITS
   );
-  expect(
-    SecBuildH.property(SecPropertyType.ElasticModulusY, H.a, H.b, H.t1, H.t2)
-  ).toBeCloseTo(ZY, NUM_DIGITS);
+  expect(H.property(SecPropertyType.ElasticModulusY)).toBeCloseTo(
+    ZY,
+    NUM_DIGITS
+  );
 });
 
 test("ビルドHのZZ", () => {
@@ -44,32 +43,33 @@ test("ビルドHのZZ", () => {
     ZZ,
     NUM_DIGITS
   );
-  expect(
-    SecBuildH.property(SecPropertyType.ElasticModulusZ, H.a, H.b, H.t1, H.t2)
-  ).toBeCloseTo(ZZ, NUM_DIGITS);
+  expect(H.property(SecPropertyType.ElasticModulusZ)).toBeCloseTo(
+    ZZ,
+    NUM_DIGITS
+  );
 });
 
 test("ビルドHの単位質量", () => {
   const M = 328.5225;
-  expect(
-    SecBuildH.property(SecPropertyType.MassPerMetre, H.a, H.b, H.t1, H.t2)
-  ).toBe(M);
+  expect(H.property(SecPropertyType.MassPerMetre)).toBe(M);
 });
 
 test("ビルドHのiY", () => {
   const IY = 4.71714095162177e-1;
   const NUM_DIGITS = 15;
-  expect(
-    SecBuildH.property(SecPropertyType.RadiusOfGyrationY, H.a, H.b, H.t1, H.t2)
-  ).toBeCloseTo(IY, NUM_DIGITS);
+  expect(H.property(SecPropertyType.RadiusOfGyrationY)).toBeCloseTo(
+    IY,
+    NUM_DIGITS
+  );
 });
 
 test("ビルドHのiZ", () => {
   const IZ = 7.99229000487988e-2;
   const NUM_DIGITS = 16;
-  expect(
-    SecBuildH.property(SecPropertyType.RadiusOfGyrationZ, H.a, H.b, H.t1, H.t2)
-  ).toBeCloseTo(IZ, NUM_DIGITS);
+  expect(H.property(SecPropertyType.RadiusOfGyrationZ)).toBeCloseTo(
+    IZ,
+    NUM_DIGITS
+  );
 });
 
 test("ビルドHのIY", () => {
@@ -79,15 +79,10 @@ test("ビルドHのIY", () => {
     IY,
     NUM_DIGITS
   );
-  expect(
-    SecBuildH.property(
-      SecPropertyType.SecondMomentOfAreaY,
-      H.a,
-      H.b,
-      H.t1,
-      H.t2
-    )
-  ).toBeCloseTo(IY, NUM_DIGITS);
+  expect(H.property(SecPropertyType.SecondMomentOfAreaY)).toBeCloseTo(
+    IY,
+    NUM_DIGITS
+  );
 });
 
 test("ビルドHのIZ", () => {
@@ -97,13 +92,8 @@ test("ビルドHのIZ", () => {
     IZ,
     NUM_DIGITS
   );
-  expect(
-    SecBuildH.property(
-      SecPropertyType.SecondMomentOfAreaZ,
-      H.a,
-      H.b,
-      H.t1,
-      H.t2
-    )
-  ).toBeCloseTo(IZ, NUM_DIGITS);
+  expect(H.property(SecPropertyType.SecondMomentOfAreaZ)).toBeCloseTo(
+    IZ,
+    NUM_DIGITS
+  );
 });
