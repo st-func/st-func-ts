@@ -21,12 +21,12 @@ test("RoundBarのA", () => {
 test("RoundBarのZ", () => {
   const Z = 3.21699087727595e-6;
   const NUM_DIGITS = 19;
-  expect(SecRoundBar.elasticModulusY(B.r)).toBeCloseTo(Z, NUM_DIGITS);
-  expect(B.property(SecPropertyType.ElasticModulusY)).toBeCloseTo(
+  expect(SecRoundBar.elasticModulusX(B.r)).toBeCloseTo(Z, NUM_DIGITS);
+  expect(B.property(SecPropertyType.ElasticModulusX)).toBeCloseTo(
     Z,
     NUM_DIGITS
   );
-  expect(B.property(SecPropertyType.ElasticModulusZ)).toBeCloseTo(
+  expect(B.property(SecPropertyType.ElasticModulusY)).toBeCloseTo(
     Z,
     NUM_DIGITS
   );
@@ -39,28 +39,28 @@ test("RoundBarの単位質量", () => {
 });
 
 test("RoundBarのi", () => {
-  const IY = 8.0e-3;
+  const IX = 8.0e-3;
   const NUM_DIGITS = 16;
-  expect(B.property(SecPropertyType.RadiusOfGyrationY)).toBeCloseTo(
-    IY,
+  expect(B.property(SecPropertyType.RadiusOfGyrationX)).toBeCloseTo(
+    IX,
     NUM_DIGITS
   );
-  expect(B.property(SecPropertyType.RadiusOfGyrationZ)).toBeCloseTo(
-    IY,
+  expect(B.property(SecPropertyType.RadiusOfGyrationY)).toBeCloseTo(
+    IX,
     NUM_DIGITS
   );
 });
 
 test("RoundBarのI", () => {
-  const IY = 5.14718540364152e-8;
+  const IX = 5.14718540364152e-8;
   const NUM_DIGITS = 21;
-  expect(SecRoundBar.secondMomentOfAreaY(B.r)).toBeCloseTo(IY, NUM_DIGITS);
-  expect(B.property(SecPropertyType.SecondMomentOfAreaY)).toBeCloseTo(
-    IY,
+  expect(SecRoundBar.secondMomentOfAreaX(B.r)).toBeCloseTo(IX, NUM_DIGITS);
+  expect(B.property(SecPropertyType.SecondMomentOfAreaX)).toBeCloseTo(
+    IX,
     NUM_DIGITS
   );
-  expect(B.property(SecPropertyType.SecondMomentOfAreaZ)).toBeCloseTo(
-    IY,
+  expect(B.property(SecPropertyType.SecondMomentOfAreaY)).toBeCloseTo(
+    IX,
     NUM_DIGITS
   );
 });

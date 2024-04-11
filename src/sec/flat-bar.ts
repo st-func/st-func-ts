@@ -35,19 +35,27 @@ export class SecFlatBar extends SecSteel {
   }
 
   /**
+   * X軸まわりの断面係数
+   * @returns X軸まわりの断面係数
+   */
+  elasticModulusX(): number {
+    return SecFlatBar.elasticModulusX(this.b, this.t);
+  }
+
+  /**
    * Y軸まわりの断面係数
    * @returns Y軸まわりの断面係数
    */
   elasticModulusY(): number {
-    return SecFlatBar.elasticModulusY(this.b, this.t);
+    return SecFlatBar.elasticModulusX(this.t, this.b);
   }
 
   /**
-   * Z軸まわりの断面係数
-   * @returns Z軸まわりの断面係数
+   * X軸まわりの断面二次モーメント
+   * @returns X軸まわりの断面二次モーメント
    */
-  elasticModulusZ(): number {
-    return SecFlatBar.elasticModulusY(this.t, this.b);
+  secondMomentOfAreaX(): number {
+    return SecFlatBar.secondMomentOfAreaX(this.b, this.t);
   }
 
   /**
@@ -55,15 +63,7 @@ export class SecFlatBar extends SecSteel {
    * @returns Y軸まわりの断面二次モーメント
    */
   secondMomentOfAreaY(): number {
-    return SecFlatBar.secondMomentOfAreaY(this.b, this.t);
-  }
-
-  /**
-   * Z軸まわりの断面二次モーメント
-   * @returns Z軸まわりの断面二次モーメント
-   */
-  secondMomentOfAreaZ(): number {
-    return SecFlatBar.secondMomentOfAreaY(this.t, this.b);
+    return SecFlatBar.secondMomentOfAreaX(this.t, this.b);
   }
 
   /**
@@ -78,24 +78,24 @@ export class SecFlatBar extends SecSteel {
   }
 
   /**
-   * 平鋼の断面係数（Y軸まわり）
+   * 平鋼の断面係数（X軸まわり）
    * （根拠:建築構造ポケットブック第6版 p.34）
    * @param b 幅 B
    * @param t 板厚 t
-   * @returns 断面係数（Y軸まわり） ZY
+   * @returns 断面係数（X軸まわり） ZX
    */
-  static elasticModulusY(b: number, t: number): number {
+  static elasticModulusX(b: number, t: number): number {
     return (t * b ** 2) / 6.0;
   }
 
   /**
-   * 平鋼の断面二次モーメント（Y軸まわり）
+   * 平鋼の断面二次モーメント（X軸まわり）
    * （根拠:建築構造ポケットブック第6版 p.34）
    * @param b 幅 B
    * @param t 板厚 t
-   * @returns 断面二次モーメント（Y軸まわり）IY
+   * @returns 断面二次モーメント（X軸まわり）IX
    */
-  static secondMomentOfAreaY(b: number, t: number): number {
+  static secondMomentOfAreaX(b: number, t: number): number {
     return (t * b ** 3) / 12.0;
   }
 }

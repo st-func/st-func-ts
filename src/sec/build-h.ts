@@ -43,6 +43,14 @@ export class SecBuildH extends SecSteel {
     return SecBuildH.area(this.a, this.b, this.t1, this.t2);
   }
   /**
+   * X軸まわりの断面係数
+   * @returns X軸まわりの断面係数
+   */
+  elasticModulusX(): number {
+    return SecBuildH.elasticModulusX(this.a, this.b, this.t1, this.t2);
+  }
+
+  /**
    * Y軸まわりの断面係数
    * @returns Y軸まわりの断面係数
    */
@@ -51,11 +59,11 @@ export class SecBuildH extends SecSteel {
   }
 
   /**
-   * Z軸まわりの断面係数
-   * @returns Z軸まわりの断面係数
+   * X軸まわりの断面二次モーメント
+   * @returns X軸まわりの断面二次モーメント
    */
-  elasticModulusZ(): number {
-    return SecBuildH.elasticModulusZ(this.a, this.b, this.t1, this.t2);
+  secondMomentOfAreaX(): number {
+    return SecBuildH.secondMomentOfAreaX(this.a, this.b, this.t1, this.t2);
   }
 
   /**
@@ -64,14 +72,6 @@ export class SecBuildH extends SecSteel {
    */
   secondMomentOfAreaY(): number {
     return SecBuildH.secondMomentOfAreaY(this.a, this.b, this.t1, this.t2);
-  }
-
-  /**
-   * Z軸まわりの断面二次モーメント
-   * @returns Z軸まわりの断面二次モーメント
-   */
-  secondMomentOfAreaZ(): number {
-    return SecBuildH.secondMomentOfAreaZ(this.a, this.b, this.t1, this.t2);
   }
 
   /**
@@ -88,6 +88,19 @@ export class SecBuildH extends SecSteel {
   }
 
   /**
+   * 組立H形鋼の断面係数（X軸まわり）
+   * （根拠:建築構造ポケットブック第6版 p.34）
+   * @param a 成 A
+   * @param b フランジ幅 B
+   * @param t1 ウェブ厚 t1
+   * @param t2 フランジ厚 t2
+   * @returns 断面係数（X軸まわり） ZX
+   */
+  static elasticModulusX(a: number, b: number, t1: number, t2: number): number {
+    return (1.0 / (6.0 * a)) * (b * a ** 3 - (b - t1) * (a - 2 * t2) ** 3);
+  }
+
+  /**
    * 組立H形鋼の断面係数（Y軸まわり）
    * （根拠:建築構造ポケットブック第6版 p.34）
    * @param a 成 A
@@ -97,32 +110,19 @@ export class SecBuildH extends SecSteel {
    * @returns 断面係数（Y軸まわり） ZY
    */
   static elasticModulusY(a: number, b: number, t1: number, t2: number): number {
-    return (1.0 / (6.0 * a)) * (b * a ** 3 - (b - t1) * (a - 2 * t2) ** 3);
-  }
-
-  /**
-   * 組立H形鋼の断面係数（Z軸まわり）
-   * （根拠:建築構造ポケットブック第6版 p.34）
-   * @param a 成 A
-   * @param b フランジ幅 B
-   * @param t1 ウェブ厚 t1
-   * @param t2 フランジ厚 t2
-   * @returns 断面係数（Z軸まわり） ZZ
-   */
-  static elasticModulusZ(a: number, b: number, t1: number, t2: number): number {
     return (1.0 / (6.0 * b)) * (2 * t2 * b ** 3 + (a - 2 * t2) * t1 ** 3);
   }
 
   /**
-   * 組立H形鋼の断面二次モーメント（Y軸まわり）
+   * 組立H形鋼の断面二次モーメント（X軸まわり）
    * （根拠:建築構造ポケットブック第6版 p.34）
    * @param a 成 A
    * @param b フランジ幅 B
    * @param t1 ウェブ厚 t1
    * @param t2 フランジ厚 t2
-   * @returns 断面二次モーメント（Y軸まわり）IY
+   * @returns 断面二次モーメント（X軸まわり）IX
    */
-  static secondMomentOfAreaY(
+  static secondMomentOfAreaX(
     a: number,
     b: number,
     t1: number,
@@ -131,15 +131,15 @@ export class SecBuildH extends SecSteel {
     return (1.0 / 12.0) * (b * a ** 3 - (b - t1) * (a - 2 * t2) ** 3);
   }
   /**
-   * 組立H形鋼の断面二次モーメント（Z軸まわり）
+   * 組立H形鋼の断面二次モーメント（Y軸まわり）
    * （根拠:建築構造ポケットブック第6版 p.34）
    * @param a 成 A
    * @param b フランジ幅 B
    * @param t1 ウェブ厚 t1
    * @param t2 フランジ厚 t2
-   * @returns 断面二次モーメント（Z軸まわり） IZ
+   * @returns 断面二次モーメント（Y軸まわり） IY
    */
-  static secondMomentOfAreaZ(
+  static secondMomentOfAreaY(
     a: number,
     b: number,
     t1: number,

@@ -23,12 +23,12 @@ test("PipeのA", () => {
 test("PipeのZ", () => {
   const Z = 1.72946416752188e-3;
   const NUM_DIGITS = 16;
-  expect(SecPipe.elasticModulusY(P.d, P.t)).toBeCloseTo(Z, NUM_DIGITS);
-  expect(P.property(SecPropertyType.ElasticModulusY)).toBeCloseTo(
+  expect(SecPipe.elasticModulusX(P.d, P.t)).toBeCloseTo(Z, NUM_DIGITS);
+  expect(P.property(SecPropertyType.ElasticModulusX)).toBeCloseTo(
     Z,
     NUM_DIGITS
   );
-  expect(P.property(SecPropertyType.ElasticModulusZ)).toBeCloseTo(
+  expect(P.property(SecPropertyType.ElasticModulusY)).toBeCloseTo(
     Z,
     NUM_DIGITS
   );
@@ -41,28 +41,28 @@ test("Pipeの単位質量", () => {
 });
 
 test("Pipeのi", () => {
-  const IY = 1.76451834787854e-1;
+  const IX = 1.76451834787854e-1;
   const NUM_DIGITS = 14;
-  expect(P.property(SecPropertyType.RadiusOfGyrationY)).toBeCloseTo(
-    IY,
+  expect(P.property(SecPropertyType.RadiusOfGyrationX)).toBeCloseTo(
+    IX,
     NUM_DIGITS
   );
-  expect(P.property(SecPropertyType.RadiusOfGyrationZ)).toBeCloseTo(
-    IY,
+  expect(P.property(SecPropertyType.RadiusOfGyrationY)).toBeCloseTo(
+    IX,
     NUM_DIGITS
   );
 });
 
 test("PipeのI", () => {
-  const IY = 4.39283898550558e-4;
+  const IX = 4.39283898550558e-4;
   const NUM_DIGITS = 17;
-  expect(SecPipe.secondMomentOfAreaY(P.d, P.t)).toBeCloseTo(IY, NUM_DIGITS);
-  expect(P.property(SecPropertyType.SecondMomentOfAreaY)).toBeCloseTo(
-    IY,
+  expect(SecPipe.secondMomentOfAreaX(P.d, P.t)).toBeCloseTo(IX, NUM_DIGITS);
+  expect(P.property(SecPropertyType.SecondMomentOfAreaX)).toBeCloseTo(
+    IX,
     NUM_DIGITS
   );
-  expect(P.property(SecPropertyType.SecondMomentOfAreaZ)).toBeCloseTo(
-    IY,
+  expect(P.property(SecPropertyType.SecondMomentOfAreaY)).toBeCloseTo(
+    IX,
     NUM_DIGITS
   );
 });

@@ -44,19 +44,27 @@ export class SecBuildBox extends SecSteel {
     return SecBuildBox.area(this.a, this.b, this.t1, this.t2);
   }
   /**
+   * X軸まわりの断面係数
+   * @returns X軸まわりの断面係数
+   */
+  elasticModulusX(): number {
+    return SecBuildBox.elasticModulusX(this.a, this.b, this.t1, this.t2);
+  }
+
+  /**
    * Y軸まわりの断面係数
    * @returns Y軸まわりの断面係数
    */
   elasticModulusY(): number {
-    return SecBuildBox.elasticModulusY(this.a, this.b, this.t1, this.t2);
+    return SecBuildBox.elasticModulusX(this.b, this.a, this.t2, this.t1);
   }
 
   /**
-   * Z軸まわりの断面係数
-   * @returns Z軸まわりの断面係数
+   * X軸まわりの断面二次モーメント
+   * @returns X軸まわりの断面二次モーメント
    */
-  elasticModulusZ(): number {
-    return SecBuildBox.elasticModulusY(this.b, this.a, this.t2, this.t1);
+  secondMomentOfAreaX(): number {
+    return SecBuildBox.secondMomentOfAreaX(this.a, this.b, this.t1, this.t2);
   }
 
   /**
@@ -64,15 +72,7 @@ export class SecBuildBox extends SecSteel {
    * @returns Y軸まわりの断面二次モーメント
    */
   secondMomentOfAreaY(): number {
-    return SecBuildBox.secondMomentOfAreaY(this.a, this.b, this.t1, this.t2);
-  }
-
-  /**
-   * Z軸まわりの断面二次モーメント
-   * @returns Z軸まわりの断面二次モーメント
-   */
-  secondMomentOfAreaZ(): number {
-    return SecBuildBox.secondMomentOfAreaY(this.b, this.a, this.t2, this.t1);
+    return SecBuildBox.secondMomentOfAreaX(this.b, this.a, this.t2, this.t1);
   }
 
   /**
@@ -89,28 +89,28 @@ export class SecBuildBox extends SecSteel {
   }
 
   /**
-   * 組立角形鋼管の断面係数（Y軸まわり）
+   * 組立角形鋼管の断面係数（X軸まわり）
    * （根拠:建築構造ポケットブック第6版 p.34）
    * @param a 成 A
    * @param b 幅 B
    * @param t1 成方向の板厚 t1
    * @param t2 幅方向の板厚 t2
-   * @returns 断面係数（Y軸まわり） ZY
+   * @returns 断面係数（X軸まわり） ZX
    */
-  static elasticModulusY(a: number, b: number, t1: number, t2: number): number {
+  static elasticModulusX(a: number, b: number, t1: number, t2: number): number {
     return (1.0 / (6.0 * a)) * (b * a ** 3 - (b - 2 * t1) * (a - 2 * t2) ** 3);
   }
 
   /**
-   * 組立角形鋼管の断面二次モーメント（Y軸まわり）
+   * 組立角形鋼管の断面二次モーメント（X軸まわり）
    * （根拠:建築構造ポケットブック第6版 p.34）
    * @param a 成 A
    * @param b 幅 B
    * @param t1 成方向の板厚 t1
    * @param t2 幅方向の板厚 t2
-   * @returns 断面二次モーメント（Y軸まわり）IY
+   * @returns 断面二次モーメント（X軸まわり）IX
    */
-  static secondMomentOfAreaY(
+  static secondMomentOfAreaX(
     a: number,
     b: number,
     t1: number,

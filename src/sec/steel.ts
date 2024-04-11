@@ -12,18 +12,18 @@ export class SecSteel {
   }
 
   /**
-   * Y軸まわりの断面係数
-   * @returns Y軸まわりの断面係数
+   * X軸まわりの断面係数
+   * @returns X軸まわりの断面係数
    */
-  elasticModulusY(): number {
+  elasticModulusX(): number {
     throw new Error("このメソッドは未実装です");
   }
 
   /**
-   * Z軸まわりの断面係数
-   * @returns Z軸まわりの断面係数
+   * Y軸まわりの断面係数
+   * @returns Y軸まわりの断面係数
    */
-  elasticModulusZ(): number {
+  elasticModulusY(): number {
     throw new Error("このメソッドは未実装です");
   }
 
@@ -44,23 +44,31 @@ export class SecSteel {
     switch (propertyType) {
       case SecPropertyType.Area:
         return this.area();
+      case SecPropertyType.ElasticModulusX:
+        return this.elasticModulusX();
       case SecPropertyType.ElasticModulusY:
         return this.elasticModulusY();
-      case SecPropertyType.ElasticModulusZ:
-        return this.elasticModulusZ();
       case SecPropertyType.MassPerMetre:
         return this.massPerMetre();
+      case SecPropertyType.RadiusOfGyrationX:
+        return this.radiusOfGyrationX();
       case SecPropertyType.RadiusOfGyrationY:
         return this.radiusOfGyrationY();
-      case SecPropertyType.RadiusOfGyrationZ:
-        return this.radiusOfGyrationZ();
+      case SecPropertyType.SecondMomentOfAreaX:
+        return this.secondMomentOfAreaX();
       case SecPropertyType.SecondMomentOfAreaY:
         return this.secondMomentOfAreaY();
-      case SecPropertyType.SecondMomentOfAreaZ:
-        return this.secondMomentOfAreaZ();
       default:
         throw new Error("実装していない断面性能タイプです");
     }
+  }
+
+  /**
+   * X軸まわりの断面二次半径
+   * @returns X軸まわりの断面二次半径
+   */
+  radiusOfGyrationX(): number {
+    return SecSteel.radiusOfGyration(this.area(), this.secondMomentOfAreaX());
   }
 
   /**
@@ -72,11 +80,11 @@ export class SecSteel {
   }
 
   /**
-   * Z軸まわりの断面二次半径
-   * @returns Z軸まわりの断面二次半径
+   * X軸まわりの断面二次モーメント
+   * @returns X軸まわりの断面二次モーメント
    */
-  radiusOfGyrationZ(): number {
-    return SecSteel.radiusOfGyration(this.area(), this.secondMomentOfAreaZ());
+  secondMomentOfAreaX(): number {
+    throw new Error("このメソッドは未実装です");
   }
 
   /**
@@ -84,14 +92,6 @@ export class SecSteel {
    * @returns Y軸まわりの断面二次モーメント
    */
   secondMomentOfAreaY(): number {
-    throw new Error("このメソッドは未実装です");
-  }
-
-  /**
-   * Z軸まわりの断面二次モーメント
-   * @returns Z軸まわりの断面二次モーメント
-   */
-  secondMomentOfAreaZ(): number {
     throw new Error("このメソッドは未実装です");
   }
 

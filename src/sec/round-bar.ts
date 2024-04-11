@@ -30,19 +30,27 @@ export class SecRoundBar extends SecSteel {
   }
 
   /**
+   * X軸まわりの断面係数
+   * @returns X軸まわりの断面係数
+   */
+  elasticModulusX(): number {
+    return SecRoundBar.elasticModulusX(this.r);
+  }
+
+  /**
    * Y軸まわりの断面係数
    * @returns Y軸まわりの断面係数
    */
   elasticModulusY(): number {
-    return SecRoundBar.elasticModulusY(this.r);
+    return SecRoundBar.elasticModulusX(this.r);
   }
 
   /**
-   * Z軸まわりの断面係数
-   * @returns Z軸まわりの断面係数
+   * X軸まわりの断面二次モーメント
+   * @returns X軸まわりの断面二次モーメント
    */
-  elasticModulusZ(): number {
-    return SecRoundBar.elasticModulusY(this.r);
+  secondMomentOfAreaX(): number {
+    return SecRoundBar.secondMomentOfAreaX(this.r);
   }
 
   /**
@@ -50,15 +58,7 @@ export class SecRoundBar extends SecSteel {
    * @returns Y軸まわりの断面二次モーメント
    */
   secondMomentOfAreaY(): number {
-    return SecRoundBar.secondMomentOfAreaY(this.r);
-  }
-
-  /**
-   * Z軸まわりの断面二次モーメント
-   * @returns Z軸まわりの断面二次モーメント
-   */
-  secondMomentOfAreaZ(): number {
-    return SecRoundBar.secondMomentOfAreaY(this.r);
+    return SecRoundBar.secondMomentOfAreaX(this.r);
   }
 
   /**
@@ -72,22 +72,22 @@ export class SecRoundBar extends SecSteel {
   }
 
   /**
-   * 丸鋼の断面係数（Y軸まわり）
+   * 丸鋼の断面係数（X軸まわり）
    * （根拠:建築構造ポケットブック第6版 p.34）
    * @param r 直径 R
-   * @returns 断面係数（Y軸まわり） ZY
+   * @returns 断面係数（X軸まわり） ZX
    */
-  static elasticModulusY(r: number): number {
+  static elasticModulusX(r: number): number {
     return (Math.PI * r ** 3) / 32.0;
   }
 
   /**
-   * 丸鋼の断面二次モーメント（Y軸まわり）
+   * 丸鋼の断面二次モーメント（X軸まわり）
    * （根拠:建築構造ポケットブック第6版 p.34）
    * @param r 直径 R
-   * @returns 断面二次モーメント（Y軸まわり）IY
+   * @returns 断面二次モーメント（X軸まわり）IX
    */
-  static secondMomentOfAreaY(r: number): number {
+  static secondMomentOfAreaX(r: number): number {
     return (Math.PI * r ** 4) / 64.0;
   }
 }
