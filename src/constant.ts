@@ -6,7 +6,7 @@ export const STEEL_DENSITY: number = 7850.0;
 /**
  * 断面性能のタイプ
  */
-export const enum SecPropertyType {
+export enum SecPropertyType {
   Area = "断面積",
   ElasticModulusX = "断面係数X",
   ElasticModulusY = "断面係数Y",
