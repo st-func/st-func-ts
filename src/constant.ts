@@ -16,3 +16,14 @@ export enum SecPropertyType {
   SecondMomentOfAreaX = "断面二次モーメントX",
   SecondMomentOfAreaY = "断面二次モーメントY",
 }
+
+/**
+ * 断面形状のタイプ
+ */
+export enum SecShapeType {
+  BuildBox = "組立角形鋼管",
+  BuildH = "組立H形鋼",
+  FlatBar = "平鋼",
+  Pipe = "円形鋼管",
+  RoundBar = "丸鋼",
+}
